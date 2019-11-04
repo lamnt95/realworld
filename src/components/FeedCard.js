@@ -3,6 +3,7 @@ import _ from "lodash";
 import { connect } from "react-redux";
 import { selectors as tutsSelectors } from "../../redux-store/api/tuts";
 import { selectors as userSelectors } from "../../redux-store/api/user";
+import Like from "./Like";
 
 const mapStateToProps = (state, ownProps) => {
   const tutData = tutsSelectors.getTuts(state, ownProps.id);
@@ -19,17 +20,8 @@ class FeedCard extends React.Component {
     this.state = {};
   }
   render() {
-    const { tutData, user } = this.props || {};
-    const {
-      title,
-      updatedAt,
-      favoritesCount,
-      id,
-      favorited,
-      description,
-      body
-    } = tutData || {};
-
+    const { tutData, user, id } = this.props || {};
+    const { title, updatedAt, description } = tutData || {};
     const { username, image } = user || {};
 
     if (_.isEmpty(title)) return null;
@@ -46,9 +38,7 @@ class FeedCard extends React.Component {
             </a>
             <span className="date">{updatedAt}</span>
           </div>
-          <button className="btn btn-outline-primary btn-sm pull-xs-right">
-            <i className="ion-heart"></i> {favoritesCount || 0}
-          </button>
+          <Like id={id} />
         </div>
         <a href="" className="preview-link">
           <h1>{title}</h1>

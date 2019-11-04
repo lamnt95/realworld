@@ -10,6 +10,9 @@ export const actions = ReduxHelper.action(types);
 
 const getTuts = (state, id) => _.get(state, `tuts.${id}`);
 
+const getTutsFavoritesCount = (state, id) =>
+  _.get(state, `tuts.${id}.favoritesCount`);
+
 const getTutsAuthor = (state, id) => _.get(state, `tuts.${id}.author.username`);
 
-export const selectors = { getTuts, getTutsAuthor };
+export const selectors = { getTuts, getTutsAuthor, getTutsFavoritesCount };
