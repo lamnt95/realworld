@@ -3,7 +3,7 @@ import { actions as tutsActions } from "../api/tuts";
 import { actions as userActions } from "../api/user";
 
 const getTutsPayload = articlesData => ({
-  articles: articlesData.map(
+  tuts: articlesData.map(
     ({
       title,
       body,
@@ -12,6 +12,7 @@ const getTutsPayload = articlesData => ({
       favorited,
       favoritesCount,
       id,
+      slug,
       author
     }) => ({
       title,
@@ -21,6 +22,7 @@ const getTutsPayload = articlesData => ({
       favorited,
       favoritesCount,
       id,
+      slug,
       author: { username: author.username }
     })
   )
