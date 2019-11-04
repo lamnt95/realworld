@@ -4,8 +4,8 @@ import _ from "lodash";
 import {
   actions as authActions,
   selectors as authSelectors
-} from "../store/reducers/authDuck";
-import rootEpic from "../store/rootEpic";
+} from "../../redux-store/api/auth";
+import rootEpic from "../../redux-store/rootEpic";
 
 const withAuth = Screen => {
   class screenWithAuth extends React.Component {

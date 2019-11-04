@@ -2,14 +2,10 @@ import _ from "lodash";
 import Immutable from "seamless-immutable";
 import { ActionsObservable } from "redux-observable";
 import authServices from "../../src/services/authServices";
-import authDuck, {
-  actions,
-  initialState,
-  selectors,
-  initAuthStartEpic,
-  initAuthSuccessEpic
-} from "../../src/store/reducers/authDuck";
-import configureStore from "../../src/store/confirgureStore";
+import authDuck, { initialState } from "../../redux-store/reducers/auth";
+import { selectors, actions } from "../../redux-store/api";
+import initAuthStartEpic from "../../redux-store/epics/auth/initAuthStart";
+import initAuthSuccessEpic from "../../redux-store/epics/auth/initAuthSuccessEpic";
 
 describe("AuthDuck ", () => {
   describe(" actions ", () => {

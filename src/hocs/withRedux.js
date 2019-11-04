@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import confirgureStore from "../store/confirgureStore";
+import confirgureStore from "../../redux-store/confirgureStore";
 
 const withRedux = (Screen, { ssr = true } = {}) => {
   class screenWithRedux extends React.Component {

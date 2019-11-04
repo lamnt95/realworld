@@ -5,8 +5,8 @@ import withRedux from "../src/hocs/withRedux";
 import withAuth from "../src/hocs/withAuth";
 import withSeo from "../src/hocs/withSeo";
 import withLayout from "../src/hocs/withLayout";
-import rootEpic from "../src/store/rootEpic";
-import { actions as feedActions } from "../src/store/reducers/feedDuck";
+import rootEpic from "../redux-store/rootEpic";
+import { actions as feedActions } from "../redux-store/api/feed";
 import Home from "../src/screens/Home";
 
 class Index extends React.Component {

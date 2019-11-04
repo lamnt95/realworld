@@ -4,4 +4,8 @@ const updateState = (newState, currentState) => {
   return _.isEqual(newState, currentState) ? currentState : newState;
 };
 
-export default { updateState };
+const type = nameModule => types => {};
+
+const action = types => {};
+
+export default { updateState, type, action };
