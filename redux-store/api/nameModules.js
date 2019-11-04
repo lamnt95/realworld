@@ -2,7 +2,8 @@ const nameModules = {
   AUTH: "AUTH",
   FEED: "FEED",
   TUTS: "TUTS",
-  TAGS: "TAGS"
+  TAGS: "TAGS",
+  USER: "USER"
 };
 
 export default nameModules;

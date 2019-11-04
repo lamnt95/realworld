@@ -2,10 +2,14 @@ import React from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { selectors as tutsSelectors } from "../../redux-store/api/tuts";
+import { selectors as userSelectors } from "../../redux-store/api/user";
 
-const mapStateToProps = (state, ownProps) => ({
-  tutData: tutsSelectors.getTuts(state, ownProps.id)
-});
+const mapStateToProps = (state, ownProps) => {
+  const tutData = tutsSelectors.getTuts(state, ownProps.id);
+  const authorName = tutsSelectors.getTutsAuthor(state, ownProps.id);
+  const user = userSelectors.getUser(state, authorName);
+  return { tutData, user };
+};
 
 const mapDispatchToProps = () => ({});
 
@@ -15,7 +19,7 @@ class FeedCard extends React.Component {
     this.state = {};
   }
   render() {
-    const { tutData } = this.props || {};
+    const { tutData, user } = this.props || {};
     const {
       title,
       updatedAt,
@@ -26,17 +30,19 @@ class FeedCard extends React.Component {
       body
     } = tutData || {};
 
+    const { username, image } = user || {};
+
     if (_.isEmpty(title)) return null;
 
     return (
       <div className="article-preview">
         <div className="article-meta">
           <a href="profile.html">
-            <img src="http://i.imgur.com/Qr71crq.jpg" />
+            <img src={image} />
           </a>
           <div className="info">
             <a href="" className="author">
-              Eric Simons
+              {username}
             </a>
             <span className="date">{updatedAt}</span>
           </div>
