@@ -1,6 +1,6 @@
 import { ofType } from "redux-observable";
 import { switchMap } from "rxjs/operators";
-import { types as authTypes, actions as authActions } from "../api/auth";
+import { types as authTypes, actions as authActions } from "../../api/auth";
 
 const initAuthSuccessEpic = action$ =>
   action$.pipe(

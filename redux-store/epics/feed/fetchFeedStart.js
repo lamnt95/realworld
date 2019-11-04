@@ -2,7 +2,7 @@ import { ofType } from "redux-observable";
 import { switchMap } from "rxjs/operators";
 import { types as feedTypes, actions as feedActions } from "../../api/feed";
 import { selectors as authSelectors } from "../../api/auth";
-import feedServices from "../../src/services/feedServices";
+import feedServices from "../../../src/services/feedServices";
 
 const fetchFeedStartEpic = (action$, store) =>
   action$.pipe(

@@ -1,4 +1,4 @@
-const _ = require("lodash");
+import _ from "lodash";
 
 const updateState = (newState, currentState) => {
   return _.isEqual(newState, currentState) ? currentState : newState;
@@ -21,4 +21,4 @@ const action = types => {
   return actions;
 };
 
-module.exports = { updateState, type, action };
+export default { updateState, type, action };
