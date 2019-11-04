@@ -1,36 +1,53 @@
 import React from "react";
+import { connect } from "react-redux";
+import _ from "lodash";
+import {
+  selectors as tagsSelector,
+  actions as tagsActions
+} from "../../redux-store/api/tags";
 
-const Tag = () => (
-  <div className="sidebar">
-    <p>Popular Tags</p>
+const mapStateToProps = state => ({
+  tags: tagsSelector.getTags(state)
+});
 
-    <div className="tag-list">
-      <a href="" className="tag-pill tag-default">
-        programming
-      </a>
-      <a href="" className="tag-pill tag-default">
-        javascript
-      </a>
-      <a href="" className="tag-pill tag-default">
-        emberjs
-      </a>
-      <a href="" className="tag-pill tag-default">
-        angularjs
-      </a>
-      <a href="" className="tag-pill tag-default">
-        react
-      </a>
-      <a href="" className="tag-pill tag-default">
-        mean
-      </a>
-      <a href="" className="tag-pill tag-default">
-        node
-      </a>
-      <a href="" className="tag-pill tag-default">
-        rails
-      </a>
-    </div>
-  </div>
-);
+const mapDispatchToProps = dispatch => ({
+  dispatch
+});
 
-export default Tag;
+class Tag extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.renderTagItem = this.renderTagItem.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.dispatch(tagsActions.fetchTagsStart());
+  }
+
+  renderTagItem(tag) {
+    return (
+      <a href="" className="tag-pill tag-default">
+        {tag}
+      </a>
+    );
+  }
+
+  render() {
+    const { tags } = this.props || {};
+    if (_.isEmpty(tags)) return null;
+    return (
+      <div className="sidebar">
+        <p>Popular Tags</p>
+        <div className="tag-list">
+          {tags.map(tag => this.renderTagItem(tag))}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Tag);

@@ -4,7 +4,7 @@ import nameModules from "./nameModules";
 
 export const types = ReduxHelper.type(nameModules.FEED)({
   FETCH_FEED_START: "E",
-  FETCH_FEED_SUCCESS: "E",
+  FETCH_FEED_SUCCESS: "CE",
   FETCH_FEED_FAIL: "E",
   ADD_MANY_FEED: "R"
 });
