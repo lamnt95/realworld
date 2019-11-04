@@ -1,7 +1,8 @@
 import _ from "lodash";
 import ReduxHelper from "../reduxHelper";
+import nameModules from "./nameModules";
 
-export const types = ReduxHelper.type("AUTH")({
+export const types = ReduxHelper.type(nameModules.AUTH)({
   INIT_AUTH_START: "E",
   INIT_AUTH_SUCCESS: "E",
   INIT_AUTH_FAIL: "E",

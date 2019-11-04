@@ -1,7 +1,8 @@
 import _ from "lodash";
 import ReduxHelper from "../reduxHelper";
+import nameModules from "./nameModules";
 
-export const types = ReduxHelper.type("FEED")({
+export const types = ReduxHelper.type(nameModules.FEED)({
   FETCH_FEED_START: "E",
   FETCH_FEED_SUCCESS: "E",
   FETCH_FEED_FAIL: "E",

@@ -7,6 +7,8 @@ const updateState = (newState, currentState) => {
 const type = nameModule => types =>
   _.mapValues(types, (value, key) => `${nameModule}/${key}`);
 
+const getNameModule = type => _.split(type, "/")[0];
+
 const createAction = type => (payload, meta, error) => ({
   type,
   payload,
@@ -21,4 +23,4 @@ const action = types => {
   return actions;
 };
 
-export default { updateState, type, action };
+export default { updateState, type, action, getNameModule };
