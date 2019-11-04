@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case tutsTypes.ADD_MANY_TUTS: {
       const tuts = _.get(action, "payload.articles");
-      const newState = Immutable.from(tuts);
+      const newState = Immutable.merge(state, tuts, { deep: true });
       return ReduxHelper.updateState(newState, state);
     }
     default:
