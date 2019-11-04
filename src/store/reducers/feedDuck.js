@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
       const feeds = _.get(action, "payload.articles");
       const feedsID = feeds.map(({ id }) => id);
       const newState = Immutable.setIn(state, ["common"], feedsID);
-      return ;
+      return state;
     }
 
     default: {
