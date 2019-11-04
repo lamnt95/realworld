@@ -1,0 +1,32 @@
+{
+  "name": "realworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "next",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "lodash": "^4.17.15",
+    "next": "^9.1.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-helmet": "^5.2.1",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-observable": "^1.2.0",
+    "rxjs": "^6.5.3",
+    "seamless-immutable": "^7.1.4"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
