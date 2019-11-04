@@ -3,7 +3,7 @@ import _ from "lodash";
 import ReduxHelper from "../reduxHelper";
 import { types as feedTypes } from "../api/feed";
 
-export const initialState = Immutable.from({});
+export const initialState = Immutable.from({ common: [] });
 
 export default (state = initialState, action) => {
   switch (action.type) {
