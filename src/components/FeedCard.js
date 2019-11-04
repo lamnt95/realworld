@@ -1,4 +1,13 @@
 import React from "react";
+import _ from "lodash";
+import { connect } from "react-redux";
+import { selectors as tutsSelectors } from "../../redux-store/api/tuts";
+
+const mapStateToProps = (state, ownProps) => ({
+  tutData: tutsSelectors.getTuts(state, ownProps.id)
+});
+
+const mapDispatchToProps = () => ({});
 
 class FeedCard extends React.Component {
   constructor(props) {
@@ -18,7 +27,7 @@ class FeedCard extends React.Component {
     } = tutData || {};
 
     if (_.isEmpty(title)) return null;
-    
+
     return (
       <div className="article-preview">
         <div className="article-meta">
@@ -29,15 +38,15 @@ class FeedCard extends React.Component {
             <a href="" className="author">
               Eric Simons
             </a>
-            <span className="date">January 20th</span>
+            <span className="date">{updatedAt}</span>
           </div>
           <button className="btn btn-outline-primary btn-sm pull-xs-right">
-            <i className="ion-heart"></i> 29
+            <i className="ion-heart"></i> {favoritesCount || 0}
           </button>
         </div>
         <a href="" className="preview-link">
-          <h1>How to build webapps that scale</h1>
-          <p>This is the description for the post.</p>
+          <h1>{title}</h1>
+          <p>{description}</p>
           <span>Read more...</span>
         </a>
       </div>
@@ -45,4 +54,7 @@ class FeedCard extends React.Component {
   }
 }
 
-export default FeedCard;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FeedCard);

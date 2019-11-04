@@ -8,6 +8,6 @@ export const types = ReduxHelper.type(nameModules.TUTS)({
 
 export const actions = ReduxHelper.action(types);
 
-const getTuts = state => _.get(state, "tuts");
+const getTuts = (state, id) => _.get(state, `tuts.${id}`);
 
 export const selectors = { getTuts };
