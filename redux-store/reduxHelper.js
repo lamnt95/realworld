@@ -1,4 +1,4 @@
-import _ from "lodash";
+const _ = require("lodash");
 
 const updateState = (newState, currentState) => {
   return _.isEqual(newState, currentState) ? currentState : newState;
@@ -17,8 +17,8 @@ const createAction = type => (payload, meta, error) => ({
 const action = types => {
   let actions = {};
   actions = _.mapValues(types, value => createAction(value));
-  actions = _.mapKeys(types, (value, key) => _.camelCase(key));
+  actions = _.mapKeys(actions, (value, key) => _.camelCase(key));
   return actions;
 };
 
-export default { updateState, type, action };
+module.exports = { updateState, type, action };
