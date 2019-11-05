@@ -3,11 +3,29 @@ import ReduxHelper from "../reduxHelper";
 import nameModules from "./nameModules";
 
 export const types = ReduxHelper.type(nameModules.TUTS)({
-  ADD_MANY_TUTS: "R"
+  ADD_MANY_TUTS: "R",
+  LIKE_TUT_START: "RE",
+  LIKE_TUT_SUCCESS: "E",
+  LIKE_TUT_FAIL: "E",
+  UN_LIKE_TUT_START: "RE",
+  UN_LIKE_TUT_SUCCESS: "E",
+  UN_LIKE_TUT_FAIL: "E"
 });
 
 export const actions = ReduxHelper.action(types);
 
-const getTuts = state => _.get(state, "tuts");
+const getTuts = (state, id) => _.get(state, `tuts.${id}`);
 
-export const selectors = { getTuts };
+const getTutsFavoritesCount = (state, id) =>
+  _.get(state, `tuts.${id}.favoritesCount`);
+const getTutsSlug = (state, id) => _.get(state, `tuts.${id}.slug`);
+const getTutsFavorited = (state, id) => _.get(state, `tuts.${id}.favorited`);
+const getTutsAuthor = (state, id) => _.get(state, `tuts.${id}.author.username`);
+
+export const selectors = {
+  getTuts,
+  getTutsSlug,
+  getTutsAuthor,
+  getTutsFavorited,
+  getTutsFavoritesCount
+};
