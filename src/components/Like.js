@@ -7,7 +7,8 @@ import {
 
 const mapStateToProps = (state, ownProps) => ({
   favoritesCount: tutsSelectors.getTutsFavoritesCount(state, ownProps.id),
-  username: tutsSelectors.getTutsAuthor(state, ownProps.id)
+  username: tutsSelectors.getTutsAuthor(state, ownProps.id),
+  favorited: tutsSelectors.getTutsFavorited(state, ownProps.id)
 });
 
 const mapDispatchToProps = dispatch => ({ dispatch });
@@ -20,19 +21,23 @@ class Like extends React.Component {
   }
 
   onClickLike() {
-    const { id, dispatch } = this.props;
+    const { id, dispatch, favorited } = this.props;
     const tutsPayload = { tuts: [{ id }] };
-    dispatch(tutsActions.likeTutStart(tutsPayload));
+    const action = favorited
+      ? tutsActions.unLikeTutStart
+      : tutsActions.likeTutStart;
+    dispatch(action(tutsPayload));
   }
 
   render() {
-    const { favoritesCount } = this.props;
+    const { favoritesCount, favorited } = this.props;
+    const heartIcon = favorited ? "icon ion-md-heart" : "icon ion-md-heart-empty";
     return (
       <button
         className="btn btn-outline-primary btn-sm pull-xs-right"
         onClick={this.onClickLike}
       >
-        <i className="ion-heart"></i> {favoritesCount || 0}
+        <i className={heartIcon}></i> {favoritesCount || 0}
       </button>
     );
   }

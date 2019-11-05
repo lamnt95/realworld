@@ -34,6 +34,10 @@ const withSeo = Screen => {
               type="text/css"
             />
             <link rel="stylesheet" href="//demo.productionready.io/main.css" />
+            <link
+              href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"
+              rel="stylesheet"
+            />
           </Helmet>
           <Screen {...this.props} />
         </div>

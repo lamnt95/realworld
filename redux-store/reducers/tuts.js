@@ -25,6 +25,18 @@ export default (state = initialState, action) => {
       });
       return ReduxHelper.updateState(newState, state);
     }
+    case tutsTypes.UN_LIKE_TUT_START: {
+      const tuts = _.get(action, "payload.tuts") || {};
+      if (_.isEmpty(tuts)) return state;
+      const { id } = tuts[0];
+      const favoritesCount = _.get(state, `${id}.favoritesCount`) - 1;
+      const newState = Immutable.setIn(state, [id], {
+        ...state[id],
+        favoritesCount,
+        favorited: false
+      });
+      return ReduxHelper.updateState(newState, state);
+    }
     default:
       return state;
   }

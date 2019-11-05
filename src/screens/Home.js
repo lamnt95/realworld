@@ -23,7 +23,7 @@ class Home extends React.Component {
   renderFeed() {
     const { feeds } = this.props;
     if (_.isEmpty(feeds)) return null;
-    return feeds.map(id => <FeedCard id={id} />);
+    return feeds.map(id => <FeedCard id={id} key={id}/>);
   }
 
   render() {
