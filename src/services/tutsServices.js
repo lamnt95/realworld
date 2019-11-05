@@ -3,20 +3,18 @@ import config from "../config";
 
 const likeTut = (accessToken, slug) => {
   const url = `${config.conduitApi}/api/articles/${slug}/favorite`;
-  const body = {};
   const headers = {
     Authorization: `Token ${accessToken}`
   };
-  return axios.post(url, body, { headers });
+  return axios.request({ url, method: "POST", headers });
 };
 
 const unLikeTut = (accessToken, slug) => {
   const url = `${config.conduitApi}/api/articles/${slug}/favorite`;
-  const body = {};
   const headers = {
     Authorization: `Token ${accessToken}`
   };
-  return axios.delete(url, body, { headers });
+  return axios.request({ url, method: "DELETE", headers });
 };
 
 export default { likeTut, unLikeTut };
