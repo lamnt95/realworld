@@ -1,44 +1,39 @@
 import React from "react";
 import _ from "lodash";
-import { connect } from "react-redux";
 import Link from "next/link";
-import { actions as authActions } from "../../redux-store/api/auth";
+import { connect } from "react-redux";
+import { actions as authActions } from "../../redux-store/api/auth.js";
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({ dispatch });
 
-class SignUp extends React.Component {
+class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: undefined,
-      email: undefined,
-      password: undefined,
-      dirtyInput: false
-    };
+    this.state = { email: undefined, password: undefined, dirtyInput: false };
     this.renderError = this.renderError.bind(this);
     this.renderTitle = this.renderTitle.bind(this);
     this.renderBtnSubmit = this.renderBtnSubmit.bind(this);
     this.renderEmailInput = this.renderEmailInput.bind(this);
     this.renderPasswordInput = this.renderPasswordInput.bind(this);
-    this.renderUsernameInput = this.renderUsernameInput.bind(this);
-    this.onChangeInput = this.onChangeInput.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
     this.checkIsValidate = this.checkIsValidate.bind(this);
     this.onClickSubmit = this.onClickSubmit.bind(this);
   }
   onClickSubmit(event) {
     event.preventDefault();
-    const { email, password, username } = this.state;
-    console.log(this.state);
-    this.props.dispatch(
-      authActions.registerStart({ email, password, username })
-    );
+    const { email, password } = this.state;
+    this.props.dispatch(authActions.initAuthStart({ email, password }));
   }
-  onChangeInput(event) {
-    const text = _.get(event, "target.value");
-    const name = _.get(event, "target.name");
-    this.setState({ [name]: text, dirtyInput: true });
+  onChangePassword(event) {
+    const password = _.get(event, "target.value");
+    this.setState({ password, dirtyInput: true });
+  }
+  onChangeEmail(event) {
+    const email = _.get(event, "target.value");
+    this.setState({ email, dirtyInput: true });
   }
   checkIsValidate() {
     const { email, password } = this.state;
@@ -47,10 +42,10 @@ class SignUp extends React.Component {
   renderTitle() {
     return (
       <React.Fragment>
-        <h1 className="text-xs-center">Sign Up</h1>
+        <h1 className="text-xs-center">Sign In</h1>
         <p className="text-xs-center">
-          <Link href="/signin">
-            <a>Have an account?</a>
+          <Link href="/signup">
+            <a href="">Need an account?</a>
           </Link>
         </p>
       </React.Fragment>
@@ -65,28 +60,14 @@ class SignUp extends React.Component {
       </ul>
     );
   }
-  renderUsernameInput() {
-    return (
-      <fieldset className="form-group">
-        <input
-          className="form-control form-control-lg"
-          type="text"
-          name="username"
-          placeholder="Username"
-          onChange={this.onChangeInput}
-        />
-      </fieldset>
-    );
-  }
   renderEmailInput() {
     return (
       <fieldset className="form-group">
         <input
           className="form-control form-control-lg"
           type="text"
-          name="email"
           placeholder="Email"
-          onChange={this.onChangeInput}
+          onChange={this.onChangeEmail}
         />
       </fieldset>
     );
@@ -97,16 +78,15 @@ class SignUp extends React.Component {
         <input
           className="form-control form-control-lg"
           type="password"
-          name="password"
           placeholder="Password"
-          onChange={this.onChangeInput}
+          onChange={this.onChangePassword}
         />
       </fieldset>
     );
   }
   renderBtnSubmit() {
     return (
-      <button className="btn btn-lg btn-primary pull-xs-right">Sign Up</button>
+      <button className="btn btn-lg btn-primary pull-xs-right">Sign In</button>
     );
   }
   render() {
@@ -118,7 +98,6 @@ class SignUp extends React.Component {
               {this.renderTitle()}
               {this.renderError()}
               <form onSubmit={this.onClickSubmit}>
-                {this.renderUsernameInput()}
                 {this.renderEmailInput()}
                 {this.renderPasswordInput()}
                 {this.renderBtnSubmit()}
@@ -134,4 +113,4 @@ class SignUp extends React.Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignUp);
+)(SignIn);
